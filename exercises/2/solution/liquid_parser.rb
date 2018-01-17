@@ -8,10 +8,6 @@ class LiquidParser
   attr_reader :ast
 
   Tag = Struct.new(:type, :body, :wellformed) do
-    def wellformed?
-      !!wellformed
-    end
-
     def close
       self.wellformed = true
     end
