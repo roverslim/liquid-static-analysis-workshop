@@ -4,13 +4,13 @@ RSpec.describe(LiquidAnalyzer, '.run') do
   subject { LiquidAnalyzer.run(filename) }
 
   context 'when the document contains a wellformed liquid comment' do
-    let(:filename) { 'supporting_files/wellformed_comment.liquid' }
+    let(:filename) { 'templates/wellformed_comment.liquid' }
     it { is_expected.to be_empty }
   end
 
   context 'when the document contains a malformed liquid comment' do
     context 'when the opening comment tag contains a typo' do
-      let(:filename) { 'supporting_files/malformed_comment_with_opening_block_typo.liquid' }
+      let(:filename) { 'templates/malformed_comment_with_opening_block_typo.liquid' }
       let(:analysis) do
         [
           {
@@ -30,7 +30,7 @@ RSpec.describe(LiquidAnalyzer, '.run') do
     end
 
     context 'when the closing comment tag is missing' do
-      let(:filename) { 'supporting_files/malformed_comment_with_missing_closing_block.liquid' }
+      let(:filename) { 'templates/malformed_comment_with_missing_closing_block.liquid' }
       let(:analysis) do
         [
           {
