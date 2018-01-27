@@ -4,7 +4,11 @@
 
 In this second exercise, we will extend upon the tokenizer built in exercise 1 and we will implement a stateful construct that the liquid tokens we hand it.
 
+Remember to copy over the solution file you prepared for example 1.
+
 One technique to build upon incoming tokens is to store them in an [abstract syntax tree (AST)](https://en.wikipedia.org/wiki/Abstract_syntax_tree). An AST is just a representation of the langugage constructs in the form of a tree. It will help us categorize the correctness the tokenized input.
+
+For your convenience, each example is listed below but also in the relevant example.liquid and example_output.json files that you can use to ensure your program is working correctly.
 
 ## Instructions
 

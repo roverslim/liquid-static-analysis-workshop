@@ -1,54 +1,53 @@
 require_relative 'liquid_parser'
+require 'json'
+require 'pry'
 
 RSpec.describe(LiquidParser, '#run') do
   let(:parser) { LiquidParser.new }
 
   subject do
-    document.each do |line|
+    expected_input.each_line do |line|
       parser.run(line)
     end
-    parser.ast
+
+    JSON.parse(parser.to_json)
   end
 
   context 'when the document contains a wellformed liquid comment' do
-    let(:document) do
-      [
-        '{% comment %}',
-        'This is a comment',
-        '{% endcomment %}',
-      ]
+    let(:expected_input) do
+      File.read("example1.liquid")
     end
 
-    let(:ast) { [LiquidParser::Tag.new(:comment, 'This is a comment', true)] }
+    let(:expected_output) do
+      JSON.parse(File.read("example1_output.json"))
+    end
 
-    it { is_expected.to eq(ast) }
+    it { is_expected.to eq(expected_output) }
   end
 
   context 'when the document contains a malformed liquid comment' do
     context 'when the opening comment tag contains a typo' do
-      let(:document) do
-        [
-          '{% coment %}',
-          'This is a comment',
-          '{% endcomment %}',
-        ]
+      let(:expected_input) do
+        File.read("example2.liquid")
       end
 
-      it { is_expected.to be_empty }
+      let(:expected_output) do
+        JSON.parse(File.read("example2_output.json"))
+      end
+
+      it { is_expected.to eql(expected_output) }
     end
 
     context 'when the closing comment tag is missing' do
-      let(:document) do
-        [
-          '{% comment %}\n',
-          'This is a comment\n',
-          '<div>',
-        ]
+      let(:expected_input) do
+        File.read("example3.liquid")
       end
 
-      let(:ast) { [LiquidParser::Tag.new(:comment, 'This is a comment\n<div>', nil)] }
+      let(:expected_output) do
+        JSON.parse(File.read("example3_output.json"))
+      end
 
-      it { is_expected.to eq(ast) }
+      it { is_expected.to eql(expected_output) }
     end
   end
 end
