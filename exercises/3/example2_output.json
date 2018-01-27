@@ -1,0 +1,5 @@
+[{
+  "line_number": 1,
+  "error": "malformed_tag",
+  "message": "Comment block opened but never closed."
+}]

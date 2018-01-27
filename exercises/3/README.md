@@ -1,10 +1,18 @@
-# Exercise 3: analyzing
+# Exercise 3: Analysis
 
 ## Objective
 
-In this third exercise, we will make use of the liquid parser from exercise 2 to analyze the generated AST.
+Now that we can tokenize and parse liquid templates, it's time to analyze them and detect any errors that might be involved in the parsing of those documents.
+
+In this third exercise, we will make use of the liquid parser from exercise 2 to analyze the generated AST. AND the liquid tokenizer from exercise 1.
+
+**Remember to copy over your files from the last two exercises**
 
 The objective of this exercise is to analyze the generated AST for correctness and to report on any inadequacies detected during tokenization or during parsing.
+
+The goal of this exercise is to detect errors for *non well formed input*
+
+For your convenience, each example and expected output are below, but are included in the example.liquid and example_output.json files.
 
 ## Instructions
 
