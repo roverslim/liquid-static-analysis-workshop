@@ -75,3 +75,5 @@ Analyzed output:
   "message": "Comment block opened but never closed."
 }]
 ```
+
+### [Move to exercise 5](../5/README.md)
