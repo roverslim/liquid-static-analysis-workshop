@@ -1,8 +1,6 @@
 require_relative 'liquid_parser'
 
-module LiquidAnalyzer
-  extend self
-
+class LiquidAnalyzer
   class Analysis < Struct.new(:output)
     def initialize
       self.output = []
@@ -18,10 +16,20 @@ module LiquidAnalyzer
   end
   private_constant :Analysis
 
-  def run(filename)
+  def initialize(filename)
+    @file = File.new(filename)
+  end
+
+  def run
     analysis = Analysis.new
-    parser = LiquidParser.new(filename, analyzer: analysis)
-    parser.run
+
+    parser = LiquidParser.new(analyzer: analysis)
+    @file.each do |line|
+      line_number = @file.lineno
+      parser.run(line_number, line)
+    end
+    parser.complete
+
     analysis.output
   end
 end

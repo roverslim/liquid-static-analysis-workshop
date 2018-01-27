@@ -3,7 +3,7 @@ require 'json'
 require 'pry'
 
 RSpec.describe(LiquidAnalyzer, '.run') do
-  subject { LiquidAnalyzer.run(filename) }
+  subject { LiquidAnalyzer.new(filename).run }
 
   context 'when the document contains a wellformed liquid comment' do
     let(:filename) { 'example1.liquid' }

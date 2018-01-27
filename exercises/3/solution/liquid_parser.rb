@@ -1,8 +1,7 @@
 require_relative 'liquid_tokenizer'
 
 class LiquidParser
-  def initialize(filename, analyzer:)
-    @file = File.new(filename)
+  def initialize(analyzer:)
     @analyzer = analyzer
     @ast = []
   end
@@ -20,16 +19,16 @@ class LiquidParser
     end
   end
 
-  def run
-    @file.each do |line|
-      line_number = @file.lineno
-      parse(line_number, line)
+  def run(line_number, line)
+    type, action = LiquidTokenizer.run(line_number, line, @analyzer)
+
+    case action
+    when :open then open_tag(type, line_number)
+    when :close then close_tag(type, line_number)
+    else
+      insert_body(line)
     end
-
-    complete
   end
-
-  private
 
   def complete
     return unless @current
@@ -41,16 +40,7 @@ class LiquidParser
     )
   end
 
-  def parse(line_number, line)
-    type, action = LiquidTokenizer.run(line_number, line, @analyzer)
-
-    case action
-    when :open then open_tag(type, line_number)
-    when :close then close_tag(type, line_number)
-    else
-      insert_body(line)
-    end
-  end
+  private
 
   def open_tag(type, line_start)
     return if @current
