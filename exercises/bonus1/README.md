@@ -2,7 +2,13 @@
 
 ## Objective
 
-In the previous exercises, we saw how to tokenize a string, parse it into a language construct and analyze the result. This time around, we will extend the analysis to support HTML.
+In the previous exercises, we saw how to tokenize a string, parse it into a language construct and analyze the result.
+
+This time around, we will extend the analysis to support a full blown html and liquid template. We're still going to be primarily testing the analysis portion here, so no errors means we have a wellformed document.
+
+This should be understood as a challenge to the reader. We haven't provided a solution to you, let us know if you finish it :)
+
+For your convenience, the examples below have been extracted into example.liquid and example.json files in the repository for your testing.
 
 ## Instructions
 

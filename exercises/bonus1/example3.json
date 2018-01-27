@@ -1,0 +1,6 @@
+[{
+  "line_number": 3,
+  "parser": "liquid",
+  "error": "malformed_tag",
+  "message": "Comment block opened but never closed."
+}]

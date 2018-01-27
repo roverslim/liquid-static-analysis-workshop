@@ -1,0 +1,6 @@
+[{
+  "line_number": 3,
+  "parser": "html",
+  "error": "malformed_tag",
+  "message": "div opened but never closed."
+}]
