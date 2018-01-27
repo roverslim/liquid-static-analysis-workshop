@@ -20,8 +20,8 @@ module LiquidTokenizer
     else
       analysis.add(
         line_number: line_number,
-        type: :unknown_tag_type,
-        message: "Unrecognized tag type #{type.inspect}.",
+        error: 'unknown_tag_type',
+        message: "Unrecognized tag type '#{type}'.",
       )
       nil
     end

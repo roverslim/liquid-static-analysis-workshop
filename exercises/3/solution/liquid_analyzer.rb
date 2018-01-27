@@ -8,11 +8,11 @@ module LiquidAnalyzer
       self.output = []
     end
 
-    def add(line_number:, type:, message:)
+    def add(line_number:, error:, message:)
       self.output << {
-        line_number: line_number,
-        type: type,
-        message: message,
+        'line_number' => line_number,
+        'error' => error,
+        'message' => message,
       }
     end
   end

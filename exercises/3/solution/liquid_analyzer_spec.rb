@@ -1,47 +1,37 @@
 require_relative 'liquid_analyzer'
+require 'json'
+require 'pry'
 
 RSpec.describe(LiquidAnalyzer, '.run') do
   subject { LiquidAnalyzer.run(filename) }
 
   context 'when the document contains a wellformed liquid comment' do
     let(:filename) { 'example1.liquid' }
-    it { is_expected.to be_empty }
+    let(:expected_output) do
+      JSON.parse(File.read("example1_output.json"))
+    end
+    it { is_expected.to eq(expected_output) }
   end
 
   context 'when the document contains a malformed liquid comment' do
-    context 'when the opening comment tag contains a typo' do
+    context 'when the closing comment tag is missing' do
       let(:filename) { 'example2.liquid' }
-      let(:analysis) do
-        [
-          {
-            line_number: 1,
-            type: :unknown_tag_type,
-            message: 'Unrecognized tag type "coment".',
-          },
-          {
-            line_number: 3,
-            type: :malformed_tag,
-            message: 'Comment block closing without a matching opening.',
-          },
-        ]
+
+      let(:expected_output) do
+        JSON.parse(File.read("example2_output.json"))
       end
 
-      it { is_expected.to eq(analysis) }
+      it { is_expected.to eq(expected_output) }
     end
 
-    context 'when the closing comment tag is missing' do
+    context 'when the opening comment tag contains a typo' do
       let(:filename) { 'example3.liquid' }
-      let(:analysis) do
-        [
-          {
-            line_number: 1,
-            type: :malformed_tag,
-            message: 'Comment block opened but never closed.',
-          },
-        ]
+
+      let(:expected_output) do
+        JSON.parse(File.read("example3_output.json"))
       end
 
-      it { is_expected.to eq(analysis) }
+      it { is_expected.to eq(expected_output) }
     end
   end
 end

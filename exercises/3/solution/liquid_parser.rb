@@ -36,7 +36,7 @@ class LiquidParser
 
     @analyzer.add(
       line_number: @current.line_start,
-      type: :malformed_tag,
+      error: 'malformed_tag',
       message: "#{@current.type.capitalize} block opened but never closed.",
     )
   end
@@ -63,7 +63,7 @@ class LiquidParser
     unless @current
       @analyzer.add(
         line_number: line_number,
-        type: :malformed_tag,
+        error: 'malformed_tag',
         message: "#{type.capitalize} block closing without a matching opening.",
       )
       return
