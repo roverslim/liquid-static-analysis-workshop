@@ -13,9 +13,9 @@ module LiquidTokenizer
 
     case match_data[:type]
     when 'comment'
-      [:comment, :open]
+      ["comment", "open"]
     when 'endcomment'
-      [:comment, :close]
+      ["comment", "close"]
     end
   end
 end

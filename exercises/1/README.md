@@ -20,6 +20,10 @@ You can consult [wikipedia](https://en.wikipedia.org/wiki/Lexical_analysis) for 
 
 Write a tokenizer that takes in strings as input and returns their Liquid representation as tokens.
 
+For your conveniance, the following examples below have been included in respective input and output files.
+
+You should verify that your process should transform example1.liquid into example1_output.json as an example.
+
 ### Ex.1  An opening tag for a comment block
 Input:
 ```liquid
