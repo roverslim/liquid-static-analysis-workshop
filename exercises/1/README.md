@@ -1,6 +1,6 @@
-# Exercise 1
+# Exercise 1: tokenizing
 
-### Objective
+## Objective
 
 In this first exercise, we will implement a tokenizer for the Liquid template language.
 
@@ -16,18 +16,58 @@ A tokenizer generally does two things:
 
 You can consult [wikipedia](https://en.wikipedia.org/wiki/Lexical_analysis) for more information on tokenizers.
 
-### Instructions
+## Instructions
 
 Write a tokenizer that takes in strings as input and returns their Liquid representation as tokens.
 
-1.  An opening tag for a comment block ```"{% comment %}" => [:comment, :open]```
+### Ex.1  An opening tag for a comment block
+Input:
+```liquid
+{% comment %}
+```
+Tokenized output:
+```json
+["comment", "open"]
+```
 
-2. A closing tag for a comment block ```"{% endcomment %}" => [:comment, :close]```
+### Ex.2 A closing tag for a comment block
+Input:
+```liquid
+{% endcomment %}
+```
+Tokenized output:
+```json
+["comment", "close"]
+```
 
-3. A string containing no liquid template code ```"This is a comment" => nil```
+### Ex.3 A string containing no liquid template code
+Input:
+```liquid
+This is a comment
+```
+Tokenized output:
+```json
+null
+```
 
-4. (Bonus) An opening comment block tag containing a typo ```"{% coment %}" => nil```
+### Ex.4 (Bonus) An opening comment block tag containing a typo
+Input:
+```liquid
+{% coment %}
+```
+Tokenized output:
+```json
+null
+```
 
-5. (Bonus) A closing comment block tag containing a typo ```"{% endcoment %}" => nil```
+### Ex.5 (Bonus) A closing comment block tag containing a typo
+Input:
+```liquid
+{% endcoment %}
+```
+Tokenized output:
+```json
+null
+```
 
 ### [Move to exercise 2](../2/README.md)

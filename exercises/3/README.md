@@ -1,54 +1,71 @@
-# Exercise 3
+# Exercise 3: analyzing
 
-### Objective
+## Objective
 
-[TODO]
+In this third exercise, we will make use of the liquid parser from exercise 2 to analyze the generated AST.
 
-### Instructions
+The objective of this exercise is to analyze the generated AST for correctness and to report on any inadequacies detected during tokenization or during parsing.
 
-1. Analyze a document containing a wellformed liquid comment block
+## Instructions
 
-#### Input
+1. Build an analyzer that stores a structure for line analysis. It will be called from the tokenizer and the parser to add analysis points.
+2. Modify the tokenizer to accept an analysis object and extend it to add analysis points.
+3. Modify the parser as in point 2
+
+### Ex.1 Analyze a document containing a wellformed liquid comment block
+
+Input:
 ```liquid
 {% comment %}
   This is a comment
 {% endcomment %}
 ```
-
-#### Output
-```rb
+Analyzed output:
+```json
 []
 ```
 
-2. Analyze a document containing a malformed liquid comment block with a missing closing
 
-#### Input
+### Ex.2 Analyze a document containing a malformed liquid comment block with a missing closing
+
+Input:
 ```liquid
 {% comment %}
   This is a comment
 <div>
 ```
-
-#### Output
-```rb
-[
-  { line_number: 1, error: :malformed_tag, message: 'Comment block opened but never closed.' },
-]
+Analyzed output:
+```json
+[{
+  "line_number": 1,
+  "error": "malformed_tag",
+  "message": "Comment block opened but never closed."
+}]
 ```
 
-3. Analyze a document containing a malformed liquid comment block with a typo in the opening block
 
-#### Input
+### Ex.3 Analyze a document containing a malformed liquid comment block with a typo in the opening block
+
+Input:
 ```liquid
 {% coment %}
   This is a comment
 {% endcomment %}
 ```
-
-#### Output
-```rb
+Analyzed output:
+```json
 [
-  { line_number: 1, type: :unknown_tag_type, message: 'Unrecognized tag type "coment".' },
-  { line_number: 3, type: :malformed_tag, message: 'Comment block closing without a matching opening.' },
+  {
+    "line_number": 1,
+    "error": "unknown_tag_type",
+    "message": "Unrecognized tag type 'coment'."
+  },
+  {
+    "line_number": 3,
+    "error": "malformed_tag",
+    "message": "Comment block closing without a matching opening."
+  },
 ]
 ```
+
+### [Move to exercise 4](../4/README.md)
