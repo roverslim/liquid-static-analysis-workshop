@@ -56,4 +56,4 @@ tree (AST)](https://en.wikipedia.org/wiki/Abstract_syntax_tree). In the third an
 AST correctness.
 
 
-## [Get started :-)](exercises/1/README.md)
+### [Get started with exercise 1 :-)](exercises/1/README.md)

@@ -30,4 +30,4 @@ Write a tokenizer that takes in strings as input and returns their Liquid repres
 
 5. (Bonus) A closing comment block tag containing a typo ```"{% endcoment %}" => nil```
 
-## [Exercise 2](exercises/2/README.md)
+### [Move to exercise 2](../2/README.md)
