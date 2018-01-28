@@ -1,4 +1,4 @@
-# Exercise 5
+# Bonus exercise 2
 
 ## Objective
 
