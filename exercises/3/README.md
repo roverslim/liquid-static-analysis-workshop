@@ -76,4 +76,4 @@ Analyzed output:
 ]
 ```
 
-### [Move to exercise 4](../4/README.md)
+### [Move to bonus exercise 1](../bonus1/README.md)
