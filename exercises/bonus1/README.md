@@ -1,4 +1,4 @@
-# Exercise 4
+# Bonus exercise 1
 
 ## Objective
 
@@ -82,4 +82,4 @@ Analyzed output:
 }]
 ```
 
-### [Move to exercise 5](../5/README.md)
+### [Move to bonus exercise 2](../bonus2/README.md)
